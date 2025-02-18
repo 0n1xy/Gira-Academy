@@ -1,0 +1,3 @@
+export const VOUCHER_DISCOUNT_MIN = 0;
+export const VOUCHER_DISCOUNT_MAX = 100;
+export const VOUCHER_DISCOUNT_USAGE_LIMIT = 1;

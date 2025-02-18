@@ -9,6 +9,7 @@ export interface IShop {
   address?: string;
   logo_image: string;
   payment_id?: ObjectId;
+  balance: Number;
   createdAt?: Date;
   updatedAt?: Date;
 }

@@ -4,17 +4,29 @@ import CartRouter from "./Cart_Router";
 import UserRouter from "./User_Router";
 import GoogleAuthRouter from "@/routers/Google_Auth_Router";
 import ShopRouter from "@/routers/Shops_Routes";
-import ProductRouter from "@/routers/Product_Router"
-import CategoryRouter from "@/routers/Category_Router"
+import ProductRouter from "@/routers/Product_Router";
+import CategoryRouter from "@/routers/Category_Router";
 import Review_Router from "@/routers/Review_Router";
+import VoucherRouter from "./Voucher_Router";
+import CheckoutRouter from "@/routers/Checkout_Router";
+import ClickRouter from "./Click_Router";
+import OrderRouter from "./Order_Router";
+import AffiliateRouter from "./Affiliate_Router";
 
 export const routes = (app: express.Router) => {
-	app.use("/api/user", UserRouter);
-	app.use("/api/address", AddressRouter);
-	app.use("/api/cart", CartRouter);
-	app.use("/auth/google", GoogleAuthRouter);
-	app.use("/shop", ShopRouter);
-	app.use("/api/product", ProductRouter)
-	app.use("/api/category", CategoryRouter)
-	app.use("/comment", Review_Router);
+  app.use("/api/user", UserRouter);
+  app.use("/api/address", AddressRouter);
+  app.use("/api/cart", CartRouter);
+  app.use("/auth/google", GoogleAuthRouter);
+  app.use("/shop", ShopRouter);
+  app.use("/api/product", ProductRouter);
+  app.use("/api/category", CategoryRouter);
+  app.use("/comment", Review_Router);
+  app.use("/api/product", ProductRouter);
+  app.use("/api/category", CategoryRouter);
+  app.use("/api/order", OrderRouter);
+  app.use("/api/voucher", VoucherRouter);
+  app.use("/api/affiliate", AffiliateRouter);
+  app.use("/api/click", ClickRouter);
+  app.use("/checkout/", CheckoutRouter);
 };

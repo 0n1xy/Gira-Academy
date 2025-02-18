@@ -6,9 +6,8 @@ export class SendGridService {
   // private transporter: string
 
   constructor() {
-    this.apiKey =
-      String(process.env.SENDGRID_API_KEY) ||
-     
+    this.apiKey = String(process.env.SENDGRID_API_KEY);
+
     this.initializeSendGrid();
     // this.initializeMailtrap();
   }
