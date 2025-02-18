@@ -1,0 +1,1 @@
+export const SHOP_STATE = ["Open", "Closed", "Pause"]
