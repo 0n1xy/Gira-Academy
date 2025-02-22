@@ -97,7 +97,7 @@ export const calculateTotalPrice = async (req: Request, res: Response) => {
 
     await kafkaService.connectProducer();
 
-    await kafkaService.sendMessage("invoice_created", {
+    await kafkaService.sendMessage(`${invoice._id}`, {
       invoiceId: invoice._id,
       userId,
       total_money: totalPrice,
