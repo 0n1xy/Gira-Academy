@@ -1,12 +1,11 @@
-import { IAffiliate } from "@/types/Affiliate_Interface";
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-const AffiliateSchema: Schema<IAffiliate> = new Schema({
-  user_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  commission_rate: { type: Number, required: true },
-  total_earnings: { type: Number, default: 0 },
+const AffiliateSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  commission_rate: { type: Number, required: true, default: 0 }, // ✅ Đặt giá trị mặc định
 });
 
-const Affiliate = model<IAffiliate>("Affiliate", AffiliateSchema);
-
+const Affiliate =
+  mongoose.models.Affiliate || mongoose.model("Affiliate", AffiliateSchema);
 export default Affiliate;

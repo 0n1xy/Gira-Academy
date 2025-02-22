@@ -11,7 +11,7 @@ import VoucherRouter from "./Voucher_Router";
 import CheckoutRouter from "@/routers/Checkout_Router";
 import ClickRouter from "./Click_Router";
 import OrderRouter from "./Order_Router";
-import AffiliateRouter from "./Affiliate_Router";
+// import AffiliateRouter from "./Affiliate_Router";
 
 export const routes = (app: express.Router) => {
   app.use("/api/user", UserRouter);
@@ -26,7 +26,7 @@ export const routes = (app: express.Router) => {
   app.use("/api/category", CategoryRouter);
   app.use("/api/order", OrderRouter);
   app.use("/api/voucher", VoucherRouter);
-  app.use("/api/affiliate", AffiliateRouter);
+  // app.use("/api/affiliate", AffiliateRouter);
   app.use("/api/click", ClickRouter);
   app.use("/checkout/", CheckoutRouter);
 };

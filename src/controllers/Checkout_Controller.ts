@@ -6,8 +6,10 @@ import Invoice from "@/models/Invoice_Schema";
 import { BILL_STATUS, BILL_URL } from "@/constant/Bill_Constant";
 import cron from "node-cron";
 import ShopsModel from "@/models/Shops_Schema";
+import { KafkaService } from "@/services/Kafka_Service";
 
 const stripePaymentService = new StripePaymentService();
+const kafkaService = new KafkaService();
 
 export const calculateTotalPrice = async (req: Request, res: Response) => {
   try {
@@ -93,6 +95,15 @@ export const calculateTotalPrice = async (req: Request, res: Response) => {
       status: BILL_STATUS.PENDING,
     });
 
+    await kafkaService.connectProducer();
+
+    await kafkaService.sendMessage("invoice_created", {
+      invoiceId: invoice._id,
+      userId,
+      total_money: totalPrice,
+      status: BILL_STATUS.PENDING,
+    });
+
     if (session.url) {
       res.json({
         status: 200,
@@ -144,6 +155,12 @@ export const handleSuccessPayment = async (req: Request, res: Response) => {
         message: "Conflict error, please retry",
       });
     }
+
+    await kafkaService.sendMessage("payment_canceled", {
+      invoiceId: updatedBill._id,
+      userId,
+      status: BILL_STATUS.CANCEL,
+    });
 
     // Calculate the total money for each shop
     const shopBalances: { [key: string]: number } = {};
@@ -207,6 +224,12 @@ export const handleCancelPayment = async (req: Request, res: Response) => {
         message: "Conflict error, please retry",
       });
     }
+
+    await kafkaService.sendMessage("payment_canceled", {
+      invoiceId: updatedBill._id,
+      userId,
+      status: BILL_STATUS.CANCEL,
+    });
 
     console.log(`Payment canceled for user ID: ${userId}`);
     res.send("Payment Canceled");

@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-		"target": "ES6",
-		"module": "commonjs",
-		"baseUrl": ".", // notice my base url is set to ./src folder
-		"resolveJsonModule": true,
-		"outDir": "./dist",
-		"strict": true,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		// "typeRoots": ["node_modules/@types", "types"],
-		"esModuleInterop": true,
-		"paths": {
-			"@/*": ["src/*"]
-		}
+    "target": "ES6",
+    "module": "commonjs",
+    "baseUrl": ".", // notice my base url is set to ./src folder
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    // "typeRoots": ["node_modules/@types", "types"],
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*"], // if you need absolute path or path alias outside src then include the directory accordingly
   "exclude": ["src/test.ts"]
